@@ -6,7 +6,7 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
     // Business Layer...
     public function doModel()
     {
-        $registerById = MyPlugin::newInstance()->getRegisterById($_GET['register']);
+        $registerById = MyPlugin::newInstance()->getRegisterById(Params::getParam('register'));
 
         switch (Params::getParam('plugin_action')) {
             // Create/Update register

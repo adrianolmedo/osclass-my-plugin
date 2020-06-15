@@ -66,9 +66,10 @@
             if(!empty($registers)) {
 
                 foreach($registers as $aRow) {
-                    $row = array();
-                    $options = array();
-                    $options_more = array();
+                    $row            = array();
+                    $options        = array();
+                    $options_more   = array();
+                    $moreOptions    = '';
 
                     // Actions of DataTable
                     $options[] = '<a href="'.osc_route_admin_url('my-plugin-admin-crud').'&register='.$aRow['pk_i_id'].'">'.__("Edit", 'my_plugin').'</a>';
