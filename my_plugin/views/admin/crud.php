@@ -4,6 +4,7 @@ $registerById = __get('registerById');
 // Vars for build the DataTable
 $iDisplayLength = __get('iDisplayLength');
 $aData          = __get('aData');
+$sort           = Params::getParam('sort');
 $columns        = $aData['aColumns'];
 $rows           = $aData['aRows'];
 ?>
