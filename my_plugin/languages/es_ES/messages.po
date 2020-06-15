@@ -1,0 +1,180 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: My Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-23 01:00+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: codexilab <admin@codexilab.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.8.7\n"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Settings - My Plugin"
+msgstr "Configuración - My Plugin"
+
+msgid "Edit register"
+msgstr "Editar registro"
+
+msgid "Add new register"
+msgstr "Agregar nuevo registro"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Number"
+msgstr "Número"
+
+msgid "Publication date"
+msgstr "Fecha de publicación"
+
+msgid "Enable/Disable this option"
+msgstr "Habilitar/Deshabilitar esta opción"
+
+msgid "Delete"
+msgstr "Borrar"
+
+msgid "Update register"
+msgstr "Actualizar registro"
+
+msgid "Add register"
+msgstr "Agregar registro"
+
+msgid "Delete register"
+msgstr "Borrar registro"
+
+msgid "Are you sure you want to delete this register?"
+msgstr "¿Estás seguro de que deseas eliminar este registro?"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "%d Registers"
+msgstr "%d Registros"
+
+msgid "Show filters"
+msgstr "Mostrar filtros"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "No data available in table"
+msgstr "No hay datos disponibles en la tabla"
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Choose an option"
+msgstr "Elige una opción"
+
+msgid "Order by"
+msgstr "Ordenar por"
+
+msgid "Apply filters"
+msgstr "Aplicar filtros"
+
+msgid "Reset filters"
+msgstr "Resetear filtros"
+
+msgid "Activate register"
+msgstr "Activar registro"
+
+msgid "Are you sure you want to activate this register?"
+msgstr "¿Seguro que quieres activar este registro?"
+
+msgid "Activate"
+msgstr "Activar"
+
+msgid "Deactivate register"
+msgstr "Desactivar registro"
+
+msgid "Are you sure you want to deactivate this register?"
+msgstr "¿Seguro que quieres desactivar este registro?"
+
+msgid "Deactivate"
+msgstr "Desactivar"
+
+msgid "Filters"
+msgstr "Filtros"
+
+msgid "Option 1"
+msgstr "Opción 1"
+
+msgid "Option 2"
+msgstr "Opción 2"
+
+msgid "Enable/Disable this other option"
+msgstr "Habilitar/Deshabilitar esta otra opción"
+
+msgid "Write a number"
+msgstr "Escriba un número"
+
+msgid "here"
+msgstr "aquí"
+
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+msgid "It could not add register. All fields marked with (*) cannot be it empty."
+msgstr "No se pudo agregar el registro. Todos los campos marcados con (*) no pueden estar vacíos."
+
+msgid "The register it has been update correctly."
+msgstr "El registro se ha actualizado correctamente."
+
+msgid "The register it has been added correctly."
+msgstr "El registro se ha agregado correctamente."
+
+msgid "Select a register."
+msgstr "Selecciona un registro."
+
+msgid "No register have been deleted."
+msgstr "No se ha eliminado ningún registro."
+
+msgid " register(s) have been deleted."
+msgstr " registro(s) se han eliminado."
+
+msgid "No registers have been activated."
+msgstr "No se han activado registros."
+
+msgid " register(s) have been activated."
+msgstr " registro(s) se han activado."
+
+msgid "No registers have been deactivated."
+msgstr "No se han desactivado registros."
+
+msgid " register(s) have been deactivated."
+msgstr " registro(s) se han desactivado."
+
+msgid "Bulk actions"
+msgstr "Acciones masivas"
+
+msgid "Are you sure you want to %s the selected register(s)?"
+msgstr "¿Está seguro de que desea %s registro(s) seleccionados?"
+
+msgid "Enter a valid number."
+msgstr "Ingrese un número válido."
+
+msgid "The plugin is now configured."
+msgstr "El plugin ahora está configurado."
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Show more"
+msgstr "Mostrar más"
+
+msgid "Inactive"
+msgstr "Inactivo"
+
+msgid "Active"
+msgstr "Activo"

@@ -1,0 +1,1 @@
+<center>::CONTENT OF MY PLUGIN !!!::</center>
