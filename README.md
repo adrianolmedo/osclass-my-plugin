@@ -536,4 +536,4 @@ After having developed each of the above files, you can try installing the plugi
 
 ### Wiki
 
-[Implement a DataTable in Osclass](https://drive.google.com/open?id=1WFMFY0WvsUrCrosdaqMYl8k1UdrRKl-x "my_plugin.zip")
+[Implement a DataTable in Osclass](https://github.com/adrianolmedo/osclass-my-plugin/wiki/Implement-a-DataTable-in-Osclass)
