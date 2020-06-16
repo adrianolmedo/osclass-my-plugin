@@ -49,13 +49,13 @@
         private function addTableHeader()
         {
             $this->addColumn('status-border', '');
-            $this->addColumn('status', __("Status", 'my_plugin'));
+            $this->addColumn('status', __("Status", MY_PLUGIN_PREF));
             $this->addColumn('bulkactions', '<input id="check_all" type="checkbox" />');
 
-            $this->addColumn('name', __("Name", 'my_plugin'));
-            $this->addColumn('num', __("Number", 'my_plugin'));
-            $this->addColumn('pub-date', __("Publication date", 'my_plugin'));
-            $this->addColumn('date', __("Date", 'my_plugin'));
+            $this->addColumn('name', __("Name", MY_PLUGIN_PREF));
+            $this->addColumn('num', __("Number", MY_PLUGIN_PREF));
+            $this->addColumn('pub-date', __("Publication date", MY_PLUGIN_PREF));
+            $this->addColumn('date', __("Date", MY_PLUGIN_PREF));
 
             $dummy = &$this;
             osc_run_hook("admin_my_plugin_registers_table", $dummy);
@@ -72,13 +72,13 @@
                     $moreOptions    = '';
 
                     // Actions of DataTable
-                    $options[] = '<a href="'.osc_route_admin_url('my-plugin-admin-crud').'&register='.$aRow['pk_i_id'].'">'.__("Edit", 'my_plugin').'</a>';
-                    $options[] = '<a href="javascript:delete_dialog('.$aRow['pk_i_id'].')">'.__("Delete", 'my_plugin').'</a>';
+                    $options[] = '<a href="'.osc_route_admin_url('my-plugin-admin-crud').'&register='.$aRow['pk_i_id'].'">'.__("Edit", MY_PLUGIN_PREF).'</a>';
+                    $options[] = '<a href="javascript:delete_dialog('.$aRow['pk_i_id'].')">'.__("Delete", MY_PLUGIN_PREF).'</a>';
 
                     if( $aRow['b_active'] == 1 ) {
-                        $options[]  = '<a href="javascript:deactivate_dialog('.$aRow['pk_i_id'].')">' . __("Deactivate", 'my_plugin') . '</a>';
+                        $options[]  = '<a href="javascript:deactivate_dialog('.$aRow['pk_i_id'].')">' . __("Deactivate", MY_PLUGIN_PREF) . '</a>';
                     } else {
-                        $options[]  = '<a href="javascript:activate_dialog('.$aRow['pk_i_id'].')">' . __("Activate", 'my_plugin') . '</a>';
+                        $options[]  = '<a href="javascript:activate_dialog('.$aRow['pk_i_id'].')">' . __("Activate", MY_PLUGIN_PREF) . '</a>';
                     }
 
                     //$options_more[] = '<a href="#">' . __('Custom option') . '</a>';
@@ -86,7 +86,7 @@
                     // more actions
                     $options_more = osc_apply_filter('more_actions_manage_registers', $options_more, $aRow);
                     if (count($options_more) > 0 && $options_more != "" && $options_more != NULL) {
-                        $moreOptions = '<li class="show-more">'.PHP_EOL.'<a href="#" class="show-more-trigger">'. __("Show more", 'my_plugin') .'...</a>'. PHP_EOL .'<ul>'. PHP_EOL;
+                        $moreOptions = '<li class="show-more">'.PHP_EOL.'<a href="#" class="show-more-trigger">'. __("Show more", MY_PLUGIN_PREF) .'...</a>'. PHP_EOL .'<ul>'. PHP_EOL;
                         foreach( $options_more as $actual ) {
                             $moreOptions .= '<li>'.$actual."</li>".PHP_EOL;
                         }
@@ -127,7 +127,7 @@
 
         public function _status($status)
         {
-            return (!$status) ? __("Inactive", 'my_plugin') : __("Active", 'my_plugin');
+            return (!$status) ? __("Inactive", MY_PLUGIN_PREF) : __("Active", MY_PLUGIN_PREF);
         }
 
         /**

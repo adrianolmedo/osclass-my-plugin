@@ -11,9 +11,9 @@ $rows           = $aData['aRows'];
 
 <!-- Form for add/edit register -->
 <?php if ($registerById) : ?>
-    <h2 class="render-title"><?php _e("Edit register", 'my_plugin'); ?></h2>
+    <h2 class="render-title"><?php _e("Edit register", MY_PLUGIN_PREF); ?></h2>
 <?php else : ?>
-    <h2 class="render-title"><?php _e("Add new register", 'my_plugin'); ?></h2>
+    <h2 class="render-title"><?php _e("Add new register", MY_PLUGIN_PREF); ?></h2>
 <?php endif; ?>
 
 <form id="dialog-new" method="post" action="<?php echo osc_route_admin_url('my-plugin-admin-crud').'&register='.Params::getParam('register'); ?>" class="has-form-actions">
@@ -24,22 +24,22 @@ $rows           = $aData['aRows'];
 
 	<div class="form-horizontal">
 		<div class="form-row">
-			<div class="form-label"><?php _e("Name", 'my_plugin'); ?> (*)</div>
+			<div class="form-label"><?php _e("Name", MY_PLUGIN_PREF); ?> (*)</div>
 			<div class="form-controls"><input type="text" class="xlarge" name="s_name" value="<?php if (isset($registerById['s_name']) && $registerById['s_name']) echo $registerById['s_name']; ?>"></div>
 		</div>
 
 		<div class="form-row">
-			<div class="form-label"><?php _e("Number", 'my_plugin'); ?> (*)</div>
+			<div class="form-label"><?php _e("Number", MY_PLUGIN_PREF); ?> (*)</div>
 			<div class="form-controls"><input type="text" class="xlarge" name="i_num" value="<?php if (isset($registerById['i_num']) && $registerById['i_num']) echo $registerById['i_num']; ?>"></div>
 		</div>
 
 		<div class="form-row">
-			<div class="form-label"><?php _e("Publication date", 'my_plugin'); ?></div>
+			<div class="form-label"><?php _e("Publication date", MY_PLUGIN_PREF); ?></div>
 			<div class="form-controls"><input id="dt_pub_date" type="text" class="xlarge" name="dt_pub_date" value="<?php if (isset($registerById['dt_pub_date']) && $registerById['dt_pub_date']) echo $registerById['dt_pub_date']; ?>" placeholder="<?php echo my_plugin_todaydate(); ?>"></div>
 		</div>
 
 		<div class="form-row">
-			<div class="form-label"><?php _e("URL", 'my_plugin'); ?></div>
+			<div class="form-label"><?php _e("URL", MY_PLUGIN_PREF); ?></div>
 			<div class="form-controls"><input type="text" class="xlarge" name="s_url" value="<?php if (isset($registerById['s_url']) && $registerById['s_url']) echo $registerById['s_url']; ?>" placeholder='(http, https)'></div>
 		</div>
 
@@ -50,22 +50,22 @@ $rows           = $aData['aRows'];
 					<input type="checkbox" 
 					<?php if (!$registerById || $registerById['b_active'] == true) echo 'checked="true"'; ?> 
 					name="b_active" 
-					value="1"> <?php _e("Enable/Disable this option", 'my_plugin'); ?>
+					value="1"> <?php _e("Enable/Disable this option", MY_PLUGIN_PREF); ?>
 				</label>
 			</div>
 		</div>
 
 		<div class="form-actions">
             <?php if ($registerById) : ?>
-            <a class="btn btn-red" href="javascript:delete_dialog(<?php echo $registerById['pk_i_id']; ?>)"><?php _e("Delete", 'my_plugin'); ?></a>
+            <a class="btn btn-red" href="javascript:delete_dialog(<?php echo $registerById['pk_i_id']; ?>)"><?php _e("Delete", MY_PLUGIN_PREF); ?></a>
             <?php endif ?>
-            <input type="submit" value="<?php echo ($registerById) ? __("Update register", 'my_plugin') : __("Add register", 'my_plugin'); ?>" class="btn btn-submit">
+            <input type="submit" value="<?php echo ($registerById) ? __("Update register", MY_PLUGIN_PREF) : __("Add register", MY_PLUGIN_PREF); ?>" class="btn btn-submit">
         </div>
 	</div>
 </form>
 
 <!-- Dialog when it want delete a register -->
-<form id="dialog-register-delete" method="get" action="<?php echo osc_route_admin_url(true); ?>" class="has-form-actions hide" title="<?php echo osc_esc_html(__("Delete register", 'my_plugin')); ?>">
+<form id="dialog-register-delete" method="get" action="<?php echo osc_route_admin_url(true); ?>" class="has-form-actions hide" title="<?php echo osc_esc_html(__("Delete register", MY_PLUGIN_PREF)); ?>">
     <input type="hidden" name="page" value="plugins" />
     <input type="hidden" name="action" value="renderplugin" />
     <input type="hidden" name="route" value="my-plugin-admin-crud" />
@@ -74,12 +74,12 @@ $rows           = $aData['aRows'];
 
     <div class="form-horizontal">
         <div class="form-row">
-            <?php _e("Are you sure you want to delete this register?", 'my_plugin'); ?>
+            <?php _e("Are you sure you want to delete this register?", MY_PLUGIN_PREF); ?>
         </div>
         <div class="form-actions">
             <div class="wrapper">
-            <a class="btn" href="javascript:void(0);" onclick="$('#dialog-register-delete').dialog('close');"><?php _e("Cancel", 'my_plugin'); ?></a>
-            <input id="register-delete-submit" type="submit" value="<?php echo osc_esc_html( __("Delete", 'my_plugin') ); ?>" class="btn btn-red" />
+            <a class="btn" href="javascript:void(0);" onclick="$('#dialog-register-delete').dialog('close');"><?php _e("Cancel", MY_PLUGIN_PREF); ?></a>
+            <input id="register-delete-submit" type="submit" value="<?php echo osc_esc_html( __("Delete", MY_PLUGIN_PREF) ); ?>" class="btn btn-red" />
             </div>
         </div>
     </div>
@@ -98,10 +98,10 @@ $rows           = $aData['aRows'];
 	                <?php endforeach; ?>
 
 	                <select name="iDisplayLength" class="select-box-extra select-box-medium float-left" onchange="this.form.submit();" >
-	                    <option value="10"><?php printf(__("%d Registers", 'my_plugin'), 10); ?></option>
-	                    <option value="25" <?php if ( Params::getParam('iDisplayLength') == 25 ) echo 'selected'; ?> ><?php printf(__("%d Registers", 'my_plugin'), 25); ?></option>
-	                    <option value="50" <?php if ( Params::getParam('iDisplayLength') == 50 ) echo 'selected'; ?> ><?php printf(__("%d Registers", 'my_plugin'), 50); ?></option>
-	                    <option value="100" <?php if ( Params::getParam('iDisplayLength') == 100 ) echo 'selected'; ?> ><?php printf(__("%d Registers", 'my_plugin'), 100); ?></option>
+	                    <option value="10"><?php printf(__("%d Registers", MY_PLUGIN_PREF), 10); ?></option>
+	                    <option value="25" <?php if ( Params::getParam('iDisplayLength') == 25 ) echo 'selected'; ?> ><?php printf(__("%d Registers", MY_PLUGIN_PREF), 25); ?></option>
+	                    <option value="50" <?php if ( Params::getParam('iDisplayLength') == 50 ) echo 'selected'; ?> ><?php printf(__("%d Registers", MY_PLUGIN_PREF), 50); ?></option>
+	                    <option value="100" <?php if ( Params::getParam('iDisplayLength') == 100 ) echo 'selected'; ?> ><?php printf(__("%d Registers", MY_PLUGIN_PREF), 100); ?></option>
 	                </select>
 	            </form>
 
@@ -110,7 +110,7 @@ $rows           = $aData['aRows'];
                 	<input type="hidden" name="action" value="renderplugin" />
                 	<input type="hidden" name="route" value="my-plugin-admin-crud" />
 
-	                <a id="btn-display-filters" href="#" class="btn"><?php _e("Show filters", 'my_plugin'); ?></a>
+	                <a id="btn-display-filters" href="#" class="btn"><?php _e("Show filters", MY_PLUGIN_PREF); ?></a>
 	            </form>
 	        </div>
 	    </div>
@@ -125,7 +125,7 @@ $rows           = $aData['aRows'];
         <div id="bulk-actions">
             <label>
                 <?php osc_print_bulk_actions('bulk_actions', 'plugin_action', __get('bulk_options'), 'select-box-extra'); ?>
-                <input type="submit" id="bulk_apply" class="btn" value="<?php echo osc_esc_html( __("Apply", 'my_plugin') ); ?>" />
+                <input type="submit" id="bulk_apply" class="btn" value="<?php echo osc_esc_html( __("Apply", MY_PLUGIN_PREF) ); ?>" />
             </label>
         </div>
 
@@ -154,7 +154,7 @@ $rows           = $aData['aRows'];
                 <?php } else { ?>
                     <tr>
                         <td colspan="<?php echo count($columns)+1; ?>" class="text-center">
-                            <p><?php _e("No data available in table", 'my_plugin'); ?></p>
+                            <p><?php _e("No data available in table", MY_PLUGIN_PREF); ?></p>
                         </td>
                     </tr>
                 <?php } ?>
@@ -181,8 +181,8 @@ osc_show_pagination_admin($aData);
         <div class="form-row"></div>
         <div class="form-actions">
             <div class="wrapper">
-                <a id="bulk-actions-cancel" class="btn" href="javascript:void(0);"><?php _e("Cancel", 'my_plugin'); ?></a>
-                <a id="bulk-actions-submit" href="javascript:void(0);" class="btn btn-red" ><?php echo osc_esc_html( __("Delete", 'my_plugin') ); ?></a>
+                <a id="bulk-actions-cancel" class="btn" href="javascript:void(0);"><?php _e("Cancel", MY_PLUGIN_PREF); ?></a>
+                <a id="bulk-actions-submit" href="javascript:void(0);" class="btn btn-red" ><?php echo osc_esc_html( __("Delete", MY_PLUGIN_PREF) ); ?></a>
                 <div class="clear"></div>
             </div>
         </div>
@@ -204,7 +204,7 @@ osc_show_pagination_admin($aData);
                     
                     <div class="form-row">
                         <div class="form-label">
-                            <?php _e("URL", 'my_plugin'); ?>
+                            <?php _e("URL", MY_PLUGIN_PREF); ?>
                         </div>
                         <div class="form-controls">
                             <input name="s_url" type="text" value="<?php echo osc_esc_html(Params::getParam('s_url')); ?>" />
@@ -213,7 +213,7 @@ osc_show_pagination_admin($aData);
                     
                     <div class="form-row">
                         <div class="form-label">
-                            <?php _e("Date", 'my_plugin'); ?>
+                            <?php _e("Date", MY_PLUGIN_PREF); ?>
                         </div>
                         <div class="form-controls">
                             <input id="date" type="text" class="xlarge" name="date" value="<?php echo Params::getParam('date'); ?>" placeholder="<?php echo my_plugin_todaydate(null, null, '00:00:00'); ?>">
@@ -234,11 +234,11 @@ osc_show_pagination_admin($aData);
                     
                     <div class="form-row">
                         <div class="form-label">
-                            <?php _e("Status", 'my_plugin'); ?>
+                            <?php _e("Status", MY_PLUGIN_PREF); ?>
                         </div>
                         <div class="form-controls">
                             <select id="b_active" name="b_active">
-                                <option value="" <?php echo ( (Params::getParam('b_active') == '') ? 'selected="selected"' : '' )?>><?php _e("Choose an option", 'my_plugin'); ?></option>
+                                <option value="" <?php echo ( (Params::getParam('b_active') == '') ? 'selected="selected"' : '' )?>><?php _e("Choose an option", MY_PLUGIN_PREF); ?></option>
                                 <option value="1" <?php echo ( (Params::getParam('b_active') == '1') ? 'selected="selected"' : '' )?>>ACTIVATE</option>
                                 <option value="0" <?php echo ( (Params::getParam('b_active') == '0') ? 'selected="selected"' : '' )?>>DEACTIVATE</option>
                             </select>
@@ -247,7 +247,7 @@ osc_show_pagination_admin($aData);
 
                     <div class="form-row">
                         <div class="form-label">
-                            <?php _e("Order by", 'my_plugin'); ?>
+                            <?php _e("Order by", MY_PLUGIN_PREF); ?>
                         </div>
                         <div class="form-controls">
                         	<select name="sort">
@@ -267,14 +267,14 @@ osc_show_pagination_admin($aData);
     </div>
     <div class="form-actions">
         <div class="wrapper">
-            <input id="show-filters" type="submit" value="<?php echo osc_esc_html( __("Apply filters", 'my_plugin') ); ?>" class="btn btn-submit" />
-            <a class="btn" href="<?php echo osc_route_admin_url('my-plugin-admin-crud'); ?>"><?php _e("Reset filters", 'my_plugin'); ?></a>
+            <input id="show-filters" type="submit" value="<?php echo osc_esc_html( __("Apply filters", MY_PLUGIN_PREF) ); ?>" class="btn btn-submit" />
+            <a class="btn" href="<?php echo osc_route_admin_url('my-plugin-admin-crud'); ?>"><?php _e("Reset filters", MY_PLUGIN_PREF); ?></a>
         </div>
     </div>
 </form>
 
 <!-- Dialog when it want activate a register -->
-<form id="dialog-register-activate" method="get" action="<?php echo osc_route_admin_url(true); ?>" class="has-form-actions hide" title="<?php echo osc_esc_html(__("Activate register", 'my_plugin')); ?>">
+<form id="dialog-register-activate" method="get" action="<?php echo osc_route_admin_url(true); ?>" class="has-form-actions hide" title="<?php echo osc_esc_html(__("Activate register", MY_PLUGIN_PREF)); ?>">
     <input type="hidden" name="page" value="plugins" />
     <input type="hidden" name="action" value="renderplugin" />
     <input type="hidden" name="route" value="my-plugin-admin-crud" />
@@ -283,19 +283,19 @@ osc_show_pagination_admin($aData);
 
     <div class="form-horizontal">
         <div class="form-row">
-            <?php _e("Are you sure you want to activate this register?", 'my_plugin'); ?>
+            <?php _e("Are you sure you want to activate this register?", MY_PLUGIN_PREF); ?>
         </div>
         <div class="form-actions">
             <div class="wrapper">
-                <a class="btn" href="javascript:void(0);" onclick="$('#dialog-register-activate').dialog('close');"><?php _e("Cancel", 'my_plugin'); ?></a>
-                <input id="register-activate-submit" type="submit" value="<?php echo osc_esc_html( __("Activate", 'my_plugin') ); ?>" class="btn btn-red" />
+                <a class="btn" href="javascript:void(0);" onclick="$('#dialog-register-activate').dialog('close');"><?php _e("Cancel", MY_PLUGIN_PREF); ?></a>
+                <input id="register-activate-submit" type="submit" value="<?php echo osc_esc_html( __("Activate", MY_PLUGIN_PREF) ); ?>" class="btn btn-red" />
             </div>
         </div>
     </div>
 </form>
 
 <!-- Dialog when it want deactivate a register -->
-<form id="dialog-register-deactivate" method="get" action="<?php echo osc_route_admin_url(true); ?>" class="has-form-actions hide" title="<?php echo osc_esc_html(__("Deactivate register", 'my_plugin')); ?>">
+<form id="dialog-register-deactivate" method="get" action="<?php echo osc_route_admin_url(true); ?>" class="has-form-actions hide" title="<?php echo osc_esc_html(__("Deactivate register", MY_PLUGIN_PREF)); ?>">
     <input type="hidden" name="page" value="plugins" />
     <input type="hidden" name="action" value="renderplugin" />
     <input type="hidden" name="route" value="my-plugin-admin-crud" />
@@ -304,12 +304,12 @@ osc_show_pagination_admin($aData);
 
     <div class="form-horizontal">
         <div class="form-row">
-            <?php _e("Are you sure you want to deactivate this register?", 'my_plugin'); ?>
+            <?php _e("Are you sure you want to deactivate this register?", MY_PLUGIN_PREF); ?>
         </div>
         <div class="form-actions">
             <div class="wrapper">
-                <a class="btn" href="javascript:void(0);" onclick="$('#dialog-register-deactivate').dialog('close');"><?php _e("Cancel", 'my_plugin'); ?></a>
-                <input id="register-deactivate-submit" type="submit" value="<?php echo osc_esc_html( __("Deactivate", 'my_plugin') ); ?>" class="btn btn-red" />
+                <a class="btn" href="javascript:void(0);" onclick="$('#dialog-register-deactivate').dialog('close');"><?php _e("Cancel", MY_PLUGIN_PREF); ?></a>
+                <input id="register-deactivate-submit" type="submit" value="<?php echo osc_esc_html( __("Deactivate", MY_PLUGIN_PREF) ); ?>" class="btn btn-red" />
             </div>
         </div>
     </div>
@@ -373,7 +373,7 @@ osc_show_pagination_admin($aData);
             autoOpen: false,
             modal: true,
             width: 700,
-            title: '<?php echo osc_esc_js( __("Filters", 'my_plugin') ); ?>'
+            title: '<?php echo osc_esc_js( __("Filters", MY_PLUGIN_PREF) ); ?>'
         });
         $('#btn-display-filters').click(function(){
             $('#display-filters').dialog('open');

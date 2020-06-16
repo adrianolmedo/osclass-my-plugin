@@ -11,8 +11,9 @@ Plugin update URI: https://www.website.com/my_plugin/update
 */
 
 // Paths
-define('MY_PLUGIN_FOLDER', 'my_plugin/');
+define('MY_PLUGIN_FOLDER', osc_plugin_folder(__FILE__));
 define('MY_PLUGIN_PATH', osc_plugins_path() . MY_PLUGIN_FOLDER);
+define('MY_PLUGIN_PREF', basename(MY_PLUGIN_FOLDER));
 
 
 // Prepare model, controllers and helpers
@@ -27,15 +28,15 @@ osc_add_route('my-plugin-admin-settings', MY_PLUGIN_FOLDER.'views/admin/settings
 // Headers in the admin panel
 osc_add_hook('admin_menu_init', function() {
     osc_add_admin_submenu_divider(
-        "plugins", __("My Plugin", 'my_plugin'), "my_plugin", "administrator"
+        "plugins", __("My Plugin", MY_PLUGIN_PREF), MY_PLUGIN_PREF, "administrator"
     );
 
     osc_add_admin_submenu_page(
-        "plugins", __("CRUD", 'my_plugin'), osc_route_admin_url("my-plugin-admin-crud"), "my-plugin-admin-crud", "administrator"
+        "plugins", __("CRUD", MY_PLUGIN_PREF), osc_route_admin_url("my-plugin-admin-crud"), "my-plugin-admin-crud", "administrator"
     );
 
     osc_add_admin_submenu_page(
-        "plugins", __("Settings", 'my_plugin'), osc_route_admin_url("my-plugin-admin-settings"), "my-plugin-admin-settings", "administrator"
+        "plugins", __("Settings", MY_PLUGIN_PREF), osc_route_admin_url("my-plugin-admin-settings"), "my-plugin-admin-settings", "administrator"
     );
 });
 
@@ -45,7 +46,7 @@ function my_plugin_admin_controllers() {
 	switch (Params::getParam("route")) {
 		case 'my-plugin-admin-crud':
 			$filter = function($string) {
-                return __("CRUD - My Plugin", 'my_plugin');
+                return __("CRUD - My Plugin", MY_PLUGIN_PREF);
             };
 
             // Page title (in <head />)
@@ -60,7 +61,7 @@ function my_plugin_admin_controllers() {
 
 		case 'my-plugin-admin-settings':
 			$filter = function($string) {
-                return __("Settings - My Plugin", 'my_plugin');
+                return __("Settings - My Plugin", MY_PLUGIN_PREF);
             };
 
             // Page title (in <head />)
@@ -78,7 +79,12 @@ osc_add_hook("renderplugin_controller", "my_plugin_admin_controllers");
 
 
 function my_plugin_content() {
-	include MY_PLUGIN_PATH . 'parts/public/my_plugin_content.php';
+	// If exists custom template
+	if (file_exists(WebThemes::newInstance()->getCurrentThemePath().'plugins/'.MY_PLUGIN_FOLDER.'my_plugin_content.php')) {
+		osc_current_web_theme_path('plugins/'.MY_PLUGIN_FOLDER.'my_plugin_content.php');
+	} else {
+		include MY_PLUGIN_PATH . 'parts/public/my_plugin_content.php';
+	}
 }
 // Add the function in a hook, you run on the template with: osc_run_hook('my_plugin');
 osc_add_hook('my_plugin', 'my_plugin_content');

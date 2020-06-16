@@ -54,10 +54,10 @@ class MyPlugin extends DAO
     public function install()
     {
         $this->import(MY_PLUGIN_PATH.'struct.sql');
-        osc_set_preference('version', '1.0.0', 'my_plugin', 'STRING');
-        osc_set_preference('field_one', '1', 'my_plugin', 'BOOLEAN');
-        osc_set_preference('field_two', '0', 'my_plugin', 'BOOLEAN');
-        osc_set_preference('field_three', '', 'my_plugin', 'STRING');
+        osc_set_preference('version', '1.0.0', MY_PLUGIN_PREF, 'STRING');
+        osc_set_preference('field_one', '1', MY_PLUGIN_PREF, 'BOOLEAN');
+        osc_set_preference('field_two', '0', MY_PLUGIN_PREF, 'BOOLEAN');
+        osc_set_preference('field_three', '', MY_PLUGIN_PREF, 'STRING');
         osc_run_hook('my_plugin_install');
     }
 
@@ -68,7 +68,7 @@ class MyPlugin extends DAO
     {
         $this->dao->query(sprintf('DROP TABLE %s', $this->getTable_table_two()));
         $this->dao->query(sprintf('DROP TABLE %s', $this->getTable_table_one()));
-        Preference::newInstance()->delete(array('s_section' => 'my_plugin'));
+        Preference::newInstance()->delete(array('s_section' => MY_PLUGIN_PREF));
         osc_run_hook('my_plugin_uninstall');
     }
 

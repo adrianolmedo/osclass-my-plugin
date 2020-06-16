@@ -14,7 +14,7 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
 
                 // Validation fields
                 if (!Params::getParam('s_name') || !Params::getParam('i_num')) {
-                    osc_add_flash_error_message(__("It could not add register. All fields marked with (*) cannot be it empty.", 'my_plugin'), 'admin');
+                    osc_add_flash_error_message(__("It could not add register. All fields marked with (*) cannot be it empty.", MY_PLUGIN_PREF), 'admin');
                 } else {
                     $data = array(
                         's_name'        => Params::getParam('s_name'),
@@ -35,9 +35,9 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
 
                     // Messages:
                     if ($registerById) {
-                        osc_add_flash_ok_message(__("The register it has been updated correctly.", 'my_plugin'), 'admin');
+                        osc_add_flash_ok_message(__("The register it has been updated correctly.", MY_PLUGIN_PREF), 'admin');
                     } else {
-                        osc_add_flash_ok_message(__("The register it has been added correctly.", 'my_plugin'), 'admin');
+                        osc_add_flash_ok_message(__("The register it has been added correctly.", MY_PLUGIN_PREF), 'admin');
                     }
                 }
                 ob_get_clean();
@@ -50,15 +50,15 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
                 $registersId = Params::getParam('id');
 
                 if (!is_array($registersId)) {
-                    osc_add_flash_error_message(__("Select a register.", 'my_plugin'), 'admin');
+                    osc_add_flash_error_message(__("Select a register.", MY_PLUGIN_PREF), 'admin');
                 } else {
                     foreach ($registersId as $id) {
                         if (MyPlugin::newInstance()->deleteRegister($id)) $i++;
                     }
                     if ($i == 0) {
-                        osc_add_flash_error_message(__("No register have been deleted.", 'my_plugin'), 'admin');
+                        osc_add_flash_error_message(__("No register have been deleted.", MY_PLUGIN_PREF), 'admin');
                     } else {
-                        osc_add_flash_ok_message(__($i." register(s) have been deleted.", 'my_plugin'), 'admin');
+                        osc_add_flash_ok_message(__($i." register(s) have been deleted.", MY_PLUGIN_PREF), 'admin');
                     }
                 }
                 ob_get_clean();
@@ -71,7 +71,7 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
                 $registersId = Params::getParam('id');
 
                 if (!is_array($registersId)) {
-                    osc_add_flash_error_message(__("Select a register.", 'my_plugin'), 'admin');
+                    osc_add_flash_error_message(__("Select a register.", MY_PLUGIN_PREF), 'admin');
                 } else {
                     foreach ($registersId as $id) {
                         $data = array(
@@ -80,9 +80,9 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
                         );
                         if (MyPlugin::newInstance()->addRegister($data)) $i++;            }
                     if ($i == 0) {
-                        osc_add_flash_error_message(__("No registers have been activated.", 'my_plugin'), 'admin');
+                        osc_add_flash_error_message(__("No registers have been activated.", MY_PLUGIN_PREF), 'admin');
                     } else {
-                        osc_add_flash_ok_message(__($i." register(s) have been activated.", 'my_plugin'), 'admin');
+                        osc_add_flash_ok_message(__($i." register(s) have been activated.", MY_PLUGIN_PREF), 'admin');
                     }
                 }
                 ob_get_clean();
@@ -95,7 +95,7 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
                 $registersId = Params::getParam('id');
 
                 if (!is_array($registersId)) {
-                    osc_add_flash_error_message(__("Select a register.", 'my_plugin'), 'admin');
+                    osc_add_flash_error_message(__("Select a register.", MY_PLUGIN_PREF), 'admin');
                 } else {
                     foreach ($registersId as $id) {
                         $data = array(
@@ -105,9 +105,9 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
                         if (MyPlugin::newInstance()->addRegister($data)) $i++;
                     }
                     if ($i == 0) {
-                        osc_add_flash_error_message(__("No registers have been deactivated.", 'my_plugin'), 'admin');
+                        osc_add_flash_error_message(__("No registers have been deactivated.", MY_PLUGIN_PREF), 'admin');
                     } else {
-                        osc_add_flash_ok_message(__($i." register(s) have been deactivated.", 'my_plugin'), 'admin');
+                        osc_add_flash_ok_message(__($i." register(s) have been deactivated.", MY_PLUGIN_PREF), 'admin');
                     }
                 }
                 ob_get_clean();
@@ -162,10 +162,10 @@ class CAdminMyPluginCRUD extends AdminSecBaseModel
                 }
 
                 $bulk_options = array(
-                    array('value' => '', 'data-dialog-content' => '', 'label' => __("Bulk actions", 'my_plugin')),
-                    array('value' => 'activate', 'data-dialog-content' => sprintf(__("Are you sure you want to %s the selected register(s)?", 'my_plugin'), strtolower(__("Activate", 'my_plugin'))), 'label' => __("Activate", 'my_plugin')),
-                    array('value' => 'deactivate', 'data-dialog-content' => sprintf(__("Are you sure you want to %s the selected register(s)", 'my_plugin'), strtolower(__("Deactivate", 'my_plugin'))), 'label' => __("Deactivate", 'my_plugin')),
-                    array('value' => 'delete', 'data-dialog-content' => sprintf(__("Are you sure you want to %s the selected register(s)", 'my_plugin'), strtolower(__("Delete", 'my_plugin'))), 'label' => __("Delete", 'my_plugin'))
+                    array('value' => '', 'data-dialog-content' => '', 'label' => __("Bulk actions", MY_PLUGIN_PREF)),
+                    array('value' => 'activate', 'data-dialog-content' => sprintf(__("Are you sure you want to %s the selected register(s)?", MY_PLUGIN_PREF), strtolower(__("Activate", MY_PLUGIN_PREF))), 'label' => __("Activate", MY_PLUGIN_PREF)),
+                    array('value' => 'deactivate', 'data-dialog-content' => sprintf(__("Are you sure you want to %s the selected register(s)", MY_PLUGIN_PREF), strtolower(__("Deactivate", MY_PLUGIN_PREF))), 'label' => __("Deactivate", MY_PLUGIN_PREF)),
+                    array('value' => 'delete', 'data-dialog-content' => sprintf(__("Are you sure you want to %s the selected register(s)", MY_PLUGIN_PREF), strtolower(__("Delete", MY_PLUGIN_PREF))), 'label' => __("Delete", MY_PLUGIN_PREF))
                 );
 
                 $bulk_options = osc_apply_filter("register_bulk_filter", $bulk_options);
