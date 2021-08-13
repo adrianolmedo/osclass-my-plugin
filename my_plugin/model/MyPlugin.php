@@ -55,7 +55,7 @@ class MyPlugin extends DAO
     public function install()
     {
         $this->import(MY_PLUGIN_PATH.'struct.sql');
-        osc_set_preference('version', '1.0.0', MY_PLUGIN_PREF, 'STRING');
+        osc_set_preference('version', '1.0.1', MY_PLUGIN_PREF, 'STRING');
         osc_set_preference('field_one', '1', MY_PLUGIN_PREF, 'BOOLEAN');
         osc_set_preference('field_two', '0', MY_PLUGIN_PREF, 'BOOLEAN');
         osc_set_preference('field_three', '', MY_PLUGIN_PREF, 'STRING');

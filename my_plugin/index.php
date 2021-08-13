@@ -4,7 +4,7 @@
 Plugin Name: My Plugin
 Plugin URI: https://www.website.com/my_plugin
 Description: My Plugin description
-Version: 1.0.0
+Version: 1.0.1
 Author: My Name
 Author URI: https://www.website.com/
 Short Name: my-plugin
