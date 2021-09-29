@@ -10,7 +10,20 @@ How to make a plugin in Osclass? What is the correct way to make a plugin in Osc
 
 The content of this tutorial explains the development of a prototype plugin with basic functionalities (CRUD), but following the same Osclass Model-View-Controller (MVC), you will get a complete starter template that you can download free of charge and use as a guide. Doing this the right way you will discover that everything makes sense, it will make things much easier when it comes to scaling development and teamwork. And therefore you will also understand better the Osclass classified system.
 
-### Files structure
+## Contents
+
+ * [Services](#services)
+ * [Usage example](#usage-example)
+   * [Step 1 - Setting environment project](#step-1---setting-environment-project)
+     * hahaah 
+   * [Step 2 - Prepare the project](#step-2---prepare-the-project)
+   * [Step 3 - Up services](#step-3---up-services)
+ * [Enable Xdebug](#enable-xdebug)
+ * [Remote Containers in VSCode](#remote-containers-in-vscode)
+   * [Step 1 - Open VSCode on LAMPDock directory](#step-1---open-vscode-on-lampdock-directory)
+   * [Step 2 - Up services](#step-2---up-services)
+
+## Files structure
 
 ```bash
 .
@@ -50,9 +63,9 @@ oc-content
 
 In Osclass a plugin is a folder that is located inside the `oc-content/plugins/` directory, create a folder there and name it  `my_plugin`. You can create all these empty files and develop them in the specific order shown here.
 
-### Files
+## Files
 
-**struct.sql**
+### struct.sql
 
 ```sql
 CREATE TABLE /*TABLE_PREFIX*/t_plugin_table_one (
@@ -83,7 +96,7 @@ Meanwhile, this tutorial uses a basic structure with two tables `t_plugin_table_
 
 The structure of this prototype plugin is designed only to demonstrate the manipulation of different types of data and their relationship between them, it does not meet any specific logical objective.
 
-**model/MyPlugin.php**
+### model/MyPlugin.php
 
 To establish the model, a class (MyPlugin) must be created that extends the Osclass DAO class. It is important that this class has the singleton pattern so that it can be instantiated directly anywhere in the plugin.
 
@@ -115,7 +128,7 @@ class MyPlugin extends DAO
 
 The singleton pattern instantiates the class like this  `MyPlugin()::newInstance()->someMethod();`.
 
-**-- Plugin installation methods [model/MyPlugin.php]:**
+#### Plugin installation methods
 
 Other important parts of this section are the methods that allow the loading of the database that is related to the actual installation of the plugin.
 
@@ -149,7 +162,7 @@ public function install()
 
 The `MY_PLUGIN_PATH` and `MY_PLUGIN_PREF` constants are explained in `index.php`.
 
-**-- Uninstallation method [model/MyPlugin.php]:**
+#### Uninstallation method
 
 This method is in charge of completely dismantling the tables in the database and the rest of the plugin uninstallation. Remember to do the `DROP TABLE` contrary to the order in which the tables were installed, in case there is a foreign relationship.
 
@@ -166,15 +179,15 @@ public function uninstall()
 }
 ```
 
-**helpers/hUtils.php**
+### helpers/hUtils.php
 
 This is a file of general plugin functions that support it, such as URL validators or date generators. The "helpers" do not necessarily exist in the project, but in this case I have left a couple and you can see how they work within the plugin, also in case they are useful to you.
 
-**classes/datatables/CrudDataTable.php**
+### classes/datatables/CrudDataTable.php
 
 The `classes` subdirectory is usually also where third-party libraries are kept, an example would be: `classes/MCrypt.php`. In this case, it was necessary to create another subdirectory inside, a folder called `datatables` to contain the DataTables generating files there, since a project could have more than one. In another entry the operation of the DataTables will be explained.
 
-**controller/admin/crud.php**
+### controller/admin/crud.php
 
 ```php
 <?php
@@ -222,7 +235,7 @@ Make sure the user is logged in and is an administrator or redirect to the admin
 
 Credit: [How to create Osclass plugins - part 1 - MADHOUSE](https://wearemadhouse.wordpress.com/2013/10/11/how-to-develop-osclass-plugins/ "How to create Osclass plugins - part 1 - MADHOUSE")
 
-**views/admin/crud.php**
+### views/admin/crud.php
 
 ```php
 <?php
@@ -247,7 +260,7 @@ $var = __get('var');
 
 The views receive the variables that are passed from the controller, to obtain their value use `__get ()`. Here you can develop everything regarding the *front-end* is about, if you want to see the full content of this part, download the plugin files. Translatable text strings are contained within the typical `__e ()` function which indicates that Osclass uses the translation system with .po and .mo files (this topic is covered at the end of the tutorial).
 
-**oc-load.php**
+### oc-load.php
 
 ```php
 <?php
@@ -265,17 +278,17 @@ require_once MY_PLUGIN_PATH . "controller/admin/settings.php";
 
 It is a file that loads the rest of the plugin components in a logically hierarchical and separate way. That order must be respected, otherwise you will have problems.
 
-**parts/public/my_plugin_content.php**
+### parts/public/my_plugin_content.php
 
 The *parts* directory is used to locate pieces of views or dynamic HTML content with PHP embedded in content using the `osc_add_hook ()` or `osc_add_filter ()` function, these types of content would be separated into folders that would be named *admin* , *user* or *public*, depending on whether the use is within the administration (oc-admin) or in any region of the template (public or user), that is, the same logic is followed as in *views*. Inside these files it is recommended to avoid directly installing any class of the model, use *helpers* for it.
 
 Index.php explains how these files are registered.
 
-**index.php**
+### index.php
 
 It is the main file of a plugin, even depending on the project, it could be the only file of the plugin. In this case it consists of several parts.
 
-**-- Plugin letterhead [index.php]:**
+#### Plugin letterhead
 
 ```php
 <?php
@@ -293,7 +306,7 @@ Plugin update URI: https://www.website.com/my_plugin/update
 
 ![](https://i.imgur.com/NQ6Ju8T.png)
 
-**-- Plugin folder path [index.php]:**
+#### Plugin folder path
 
 ```php
 // Paths
@@ -304,7 +317,7 @@ define('MY_PLUGIN_PREF', basename(MY_PLUGIN_FOLDER));
 
 The plugin needs to know what its own folder that contains it is called and therefore the full path of where it is located, this to be able to be installed or uninstalled, these functionalities are referred to below.
 
-**-- Load the components [index.php]:**
+#### Load the components
 
 ```php
 // Prepare model, controllers and helpers
@@ -313,7 +326,7 @@ require_once MY_PLUGIN_PATH . "oc-load.php";
 
 Load `oc-load.php` file.
 
-**-- URLs routes [index.php]:**
+#### URLs routes
 
 ```php
 // URL routes
@@ -324,7 +337,7 @@ osc_add_route('my-plugin-admin-settings', MY_PLUGIN_FOLDER.'views/admin/settings
 
 It also directly loads the views.
 
-**-- Headers in the admin panel [index.php]:**
+#### Headers in the admin panel
 
 ```php
 // Headers in the admin panel
@@ -344,7 +357,7 @@ osc_add_hook('admin_menu_init', function() {
 ```
 ![](https://i.imgur.com/JhB4kig.png)
 
-**-- Load controllers [index.php]:**
+#### Load controllers
 
 ```php
 // Load the controllers, depend of url route
@@ -386,7 +399,7 @@ osc_add_hook("renderplugin_controller", "my_plugin_admin_controllers");
 
 Here you load the drivers with their respective views depending on the URL path, and at the same time add the page title to the view.
 
-**-- Headers or page titles [index.php]:**
+#### Headers or page titles
 
 ```php
 $filter = function($string) {
@@ -402,14 +415,14 @@ osc_add_filter("custom_plugin_title", $filter);
 
 ![](https://i.imgur.com/5V3M5s7.png)
 
-**-- Controller [index.php]:**
+#### Controller
 
 ```php
 $do = new CAdminMyPluginCRUD();
 $do->doModel();
 ```
 
-**-- Registering functions or parts of dynamic HTML code with PHP [index.php]:**
+#### Registering functions or parts of dynamic HTML code with PHP
 
 ```php
 function my_plugin_content() {
@@ -428,7 +441,7 @@ In this case the content of the `my_plugin_content.php` file will run in any reg
 
 The designer of a theme can customize this file with an appearance adapted to the style of the theme without having to modify the original, for it to take effect, a `plugins` folder must be created within the theme, and another folder with the plugin name, in this case a folder named `my_plugin`, so the file path would look like this, in case you are working with the Bender theme: `bender/plugins/my_plugin/my_plugin_content.php`.
 
-**-- Functions for installation, configuration link and uninstallation [index.php]:**
+#### Functions for installation, configuration link and uninstallation
 
 ```php
 // 'Configure' link
@@ -459,11 +472,11 @@ osc_register_plugin(osc_plugin_path(__FILE__), 'my_plugin_install');
 
 ### Languages
 
-**languages/en_EN/messages.po:**
+#### languages/en_EN/messages.po
 
-.po files are used to collect all translatable text strings that are contained in functions like `_e("Hello", MY_PLUGIN_PREF)` or `__("Hello", MY_PLUGIN_PREF)`, and then rewritten to a different language . In the `languages` folder contains the directories of each language, these folders are named by the language code, for English it is used *en_EN*, for Spanish it would be *es_ES*
+.po files are used to collect all translatable text strings that are contained in functions like `_e("Hello", MY_PLUGIN_PREF)` or `__("Hello", MY_PLUGIN_PREF)`, and then rewritten to a different language . In the `languages` folder contains the directories of each language, these folders are named by the language code, for English it is used *en_EN*, for Spanish it would be *es_ES*.
 
-**-- Letterhead [languages/en_EN/messages.po]:**
+##### Letterhead
 
 ```
 msgid ""
@@ -485,7 +498,7 @@ msgstr ""
 
 These files have two parts, one is the letterhead describing the version of the program that edited the file, creation date, revision date, last translator, language code, and the other part is the collection of translation variables.
 
-**-- Translation variables [languages/en_EN/messages.po]:**
+##### Translation variables
 
 ```
 msgid "Settings"
@@ -503,7 +516,7 @@ msgstr ""
 
 In the case of the English language, which is the main and default language of the Osclass project, your messages.po file will only contain the original variables in English (_msgid_), but the variables where there would be a respective translation (_msgstr_) would be empty, This means that this language as a section is not really necessary for any functionality in the plugin but it serves as a template to facilitate the creation of other languages.
 
-**languages/es_ES/messages.po:**
+#### languages/es_ES/messages.po
 
 ```
 msgid "Settings"
@@ -521,7 +534,7 @@ msgstr "Agregar nuevo registro"
 
 Here it is up to the *msgstr* variables to contain the translation.
 
-**languages/es_ES/messages.mo**
+#### languages/es_ES/messages.mo
 
 ```
 de12 0495 0000 0000 3700 0000 1c00 0000
