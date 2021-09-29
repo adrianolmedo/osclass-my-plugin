@@ -567,16 +567,16 @@ d304 0000 1f00 0000 f704 0000 0c00 0000
 
 The .mo files are the compiled and binary version of the .po files, this is obtained through the Poedit program when saving the messages.po file. All languages for them to work must have their .mo version except the English language folder, because it is not necessary.
 
-### Install
+## Install
 
 After having developed each of the above files, you can try installing the plugin in Manage Plugins from the Osclass Administration Panel, if you prefer you can move the folder of this plugin to another part, zip it and upload it from the Panel of Administration, then click 'Install'.
 
 ---
 
-### What is this repository for?
+## What is this repository for?
 
 * Require: Osclass `3.5+`, `4+`, `5` or menor.
 
-### Wiki
+## Wiki
 
 [Implement a DataTable in Osclass](https://github.com/adrianolmedo/osclass-my-plugin/wiki/Implement-a-DataTable-in-Osclass)
