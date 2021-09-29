@@ -128,7 +128,7 @@ class MyPlugin extends DAO
 
 The singleton pattern instantiates the class like this  `MyPlugin()::newInstance()->someMethod();`.
 
-#### Plugin installation methods
+#### - Plugin installation methods
 
 Other important parts of this section are the methods that allow the loading of the database that is related to the actual installation of the plugin.
 
@@ -162,7 +162,7 @@ public function install()
 
 The `MY_PLUGIN_PATH` and `MY_PLUGIN_PREF` constants are explained in `index.php`.
 
-#### Uninstallation method
+#### - Uninstallation method
 
 This method is in charge of completely dismantling the tables in the database and the rest of the plugin uninstallation. Remember to do the `DROP TABLE` contrary to the order in which the tables were installed, in case there is a foreign relationship.
 
@@ -288,7 +288,7 @@ Index.php explains how these files are registered.
 
 It is the main file of a plugin, even depending on the project, it could be the only file of the plugin. In this case it consists of several parts.
 
-#### Plugin letterhead
+#### - Plugin letterhead
 
 ```php
 <?php
@@ -306,7 +306,7 @@ Plugin update URI: https://www.website.com/my_plugin/update
 
 ![](https://i.imgur.com/NQ6Ju8T.png)
 
-#### Plugin folder path
+#### - Plugin folder path
 
 ```php
 // Paths
@@ -317,7 +317,7 @@ define('MY_PLUGIN_PREF', basename(MY_PLUGIN_FOLDER));
 
 The plugin needs to know what its own folder that contains it is called and therefore the full path of where it is located, this to be able to be installed or uninstalled, these functionalities are referred to below.
 
-#### Load the components
+#### - Load the components
 
 ```php
 // Prepare model, controllers and helpers
@@ -326,7 +326,7 @@ require_once MY_PLUGIN_PATH . "oc-load.php";
 
 Load `oc-load.php` file.
 
-#### URLs routes
+#### - URLs routes
 
 ```php
 // URL routes
@@ -337,7 +337,7 @@ osc_add_route('my-plugin-admin-settings', MY_PLUGIN_FOLDER.'views/admin/settings
 
 It also directly loads the views.
 
-#### Headers in the admin panel
+#### - Headers in the admin panel
 
 ```php
 // Headers in the admin panel
@@ -357,7 +357,7 @@ osc_add_hook('admin_menu_init', function() {
 ```
 ![](https://i.imgur.com/JhB4kig.png)
 
-#### Load controllers
+#### - Load controllers
 
 ```php
 // Load the controllers, depend of url route
@@ -399,7 +399,7 @@ osc_add_hook("renderplugin_controller", "my_plugin_admin_controllers");
 
 Here you load the drivers with their respective views depending on the URL path, and at the same time add the page title to the view.
 
-#### Headers or page titles
+#### - Headers or page titles
 
 ```php
 $filter = function($string) {
@@ -415,14 +415,14 @@ osc_add_filter("custom_plugin_title", $filter);
 
 ![](https://i.imgur.com/5V3M5s7.png)
 
-#### Controller
+#### - Controller
 
 ```php
 $do = new CAdminMyPluginCRUD();
 $do->doModel();
 ```
 
-#### Registering functions or parts of dynamic HTML code with PHP
+#### - Registering functions or parts of dynamic HTML code with PHP
 
 ```php
 function my_plugin_content() {
@@ -441,7 +441,7 @@ In this case the content of the `my_plugin_content.php` file will run in any reg
 
 The designer of a theme can customize this file with an appearance adapted to the style of the theme without having to modify the original, for it to take effect, a `plugins` folder must be created within the theme, and another folder with the plugin name, in this case a folder named `my_plugin`, so the file path would look like this, in case you are working with the Bender theme: `bender/plugins/my_plugin/my_plugin_content.php`.
 
-#### Functions for installation, configuration link and uninstallation
+#### - Functions for installation, configuration link and uninstallation
 
 ```php
 // 'Configure' link
@@ -476,7 +476,7 @@ osc_register_plugin(osc_plugin_path(__FILE__), 'my_plugin_install');
 
 .po files are used to collect all translatable text strings that are contained in functions like `_e("Hello", MY_PLUGIN_PREF)` or `__("Hello", MY_PLUGIN_PREF)`, and then rewritten to a different language . In the `languages` folder contains the directories of each language, these folders are named by the language code, for English it is used *en_EN*, for Spanish it would be *es_ES*.
 
-##### Letterhead
+##### - Letterhead
 
 ```
 msgid ""
@@ -498,7 +498,7 @@ msgstr ""
 
 These files have two parts, one is the letterhead describing the version of the program that edited the file, creation date, revision date, last translator, language code, and the other part is the collection of translation variables.
 
-##### Translation variables
+##### - Translation variables
 
 ```
 msgid "Settings"
